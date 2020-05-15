@@ -18,8 +18,8 @@ input::-webkit-inner-spin-button {
 {
   input[type=number] {
     -moz-appearance: textfield;
-    padding: 12px;
-    height: 40px;
+    padding: 7px;
+    height: 30px;
     width: 100%;
   }
 }

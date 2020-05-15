@@ -126,11 +126,11 @@ function sendGrid(input_grid, grid_id) {
         method: 'POST',
         url: process.env.api_invokeUrl + '/sendgrid',
         headers: {
-            'x-api-key' : process.env.api_key
+            'x-api-key' : process.env.api_key,
         },
         data: JSON.stringify({
         	grid_id: grid_id,
-            input_matrix: input_grid
+          input_matrix: input_grid
         }),
         contentType: 'application/json',
         error: function ajaxError(jqXHR, textStatus, errorThrown) {
@@ -148,7 +148,7 @@ function getSolution(grid_id) {
 	$.ajax({
         method: 'GET',
         headers: {
-            'x-api-key' : process.env.api_key
+            'x-api-key' : process.env.api_key,
         },
         url: process.env.api_invokeUrl + '/getgrid/' + grid_id,
         success: function(data) {

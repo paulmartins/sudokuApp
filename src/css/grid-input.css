@@ -1,0 +1,62 @@
+.bg-grey {
+  background-color:#e9ecef;
+}
+
+.bg-black {
+  background-color:#000000;
+}
+
+/* Remove the small arrows in the input number for the sudoku grid */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  margin-bottom: 60px; /* Margin bottom by footer height */
+}
+
+.card-header{
+  background-color: #e9ecef;
+}
+
+@media (max-width:767px)
+{
+  .card{
+    margin-top:10px;
+    margin-bottom:20px;
+  }
+}
+
+#spinner {
+  display: none;
+  width: 10rem; 
+  height: 10rem;
+}
+
+.card-text {
+  display: inline-block;
+}
+
+.btn-group {
+  float: right;
+}
+
+#no-solution-msg, #grid-not-detected-msg {
+  display: none;
+}
+
+#photodiv {
+  text-align: center;
+}

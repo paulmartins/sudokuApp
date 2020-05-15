@@ -1,0 +1,366 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!-- Custom CSS, bundled by webpack -->
+    <link rel="stylesheet" href="main.bundle.css">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon.png">
+
+    <title>Sudoku Solver</title>
+  </head>
+
+  <body>
+
+    <div class="jumbotron jumbotron-fluid">
+      <div class="container">
+        <h1 class="display-4"><span style='font-size:55px;'>&#128290;</span> Sudoku Solver! </h1>
+        <p class="lead">Simple example of serverless application to solve sudoku puzzles.</p>
+      </div>
+    </div>
+
+    <div class="container-sm">
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="card h-100">
+            <div class="card-header">
+              <h5 class="text-center">Grid Input</h5>
+              <ul class="nav nav-tabs card-header-tabs" id="input-type" role="tablist">
+                <li class="nav-item">
+                  <a class="nav-link active" href="#input-type-grid" role="tab" aria-controls="input-type-grid" aria-selected="true">
+                    <i class="fas fa-th"></i>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#input-type-pic" role="tab" aria-controls="input-type-pic" aria-selected="false">
+                    <i class="fas fa-camera-retro"></i> <sup><span class="badge badge-pill badge-warning">Beta</span></sup>
+                  </a>
+                </li>
+              </ul>
+            </div> <!-- end of input card-header -->
+            <div class="card-body tab-content">
+              <div class="tab-pane active" id="input-type-grid" role="tabpanel">
+                <!--h5 class="card-title"><i class="fas fa-th"></i> Fill your grid</h5-->
+                <p class="card-text">Manually fill the sudoku grid</p>
+                <div class="btn-group btn-group-sm" role="group">
+                  <button class="btn btn-outline-dark btn-sm" id="btn-test-grid">Test Grid</button>
+                  <button class="btn btn-outline-dark btn-sm" id="btn-clear-grid">Clear</button>
+                </div>
+                <form id="submit-grid-form">
+                  <div class="input-group input-group-sm mb-3 justify-content-center">
+                    <table class="table-responsive-sm table-borderless">
+                      <tbody>
+                        <tr>
+                          <td><input class="form-control bg-grey" type="number" min="1" max="9" step="1"></td>
+                          <td><input class="form-control bg-grey" type="number" min="1" max="9" step="1"></td>
+                          <td><input class="form-control bg-grey" type="number" min="1" max="9" step="1"></td>
+                          <td><input class="form-control" type="number" min="1" max="9" step="1"></td>
+                          <td><input class="form-control" type="number" min="1" max="9" step="1"></td>
+                          <td><input class="form-control" type="number" min="1" max="9" step="1"></td>
+                          <td><input class="form-control bg-grey" type="number" min="1" max="9" step="1"></td>
+                          <td><input class="form-control bg-grey" type="number" min="1" max="9" step="1"></td>
+                          <td><input class="form-control bg-grey" type="number" min="1" max="9" step="1"></td>
+                        </tr>
+                        <tr>
+                          <td><input class="form-control bg-grey" type="number" min="1" max="9" step="1"></td>
+                          <td><input class="form-control bg-grey" type="number" min="1" max="9" step="1"></td>
+                          <td><input class="form-control bg-grey" type="number" min="1" max="9" step="1"></td>
+                          <td><input class="form-control" type="number" min="1" max="9" step="1"></td>
+                          <td><input class="form-control" type="number" min="1" max="9" step="1"></td>
+                          <td><input class="form-control" type="number" min="1" max="9" step="1"></td>
+                          <td><input class="form-control bg-grey" type="number" min="1" max="9" step="1"></td>
+                          <td><input class="form-control bg-grey" type="number" min="1" max="9" step="1"></td>
+                          <td><input class="form-control bg-grey" type="number" min="1" max="9" step="1"></td>
+                        </tr>
+                        <tr>
+                          <td><input class="form-control bg-grey" type="number" min="1" max="9" step="1"></td>
+                          <td><input class="form-control bg-grey" type="number" min="1" max="9" step="1"></td>
+                          <td><input class="form-control bg-grey" type="number" min="1" max="9" step="1"></td>
+                          <td><input class="form-control" type="number" min="1" max="9" step="1"></td>
+                          <td><input class="form-control" type="number" min="1" max="9" step="1"></td>
+                          <td><input class="form-control" type="number" min="1" max="9" step="1"></td>
+                          <td><input class="form-control bg-grey" type="number" min="1" max="9" step="1"></td>
+                          <td><input class="form-control bg-grey" type="number" min="1" max="9" step="1"></td>
+                          <td><input class="form-control bg-grey" type="number" min="1" max="9" step="1"></td>
+                        </tr>
+                        <tr>
+                          <td><input class="form-control" type="number" min="1" max="9" step="1"></td>
+                          <td><input class="form-control" type="number" min="1" max="9" step="1"></td>
+                          <td><input class="form-control" type="number" min="1" max="9" step="1"></td>
+                          <td><input class="form-control bg-grey" type="number" min="1" max="9" step="1"></td>
+                          <td><input class="form-control bg-grey" type="number" min="1" max="9" step="1"></td>
+                          <td><input class="form-control bg-grey" type="number" min="1" max="9" step="1"></td>
+                          <td><input class="form-control" type="number" min="1" max="9" step="1"></td>
+                          <td><input class="form-control" type="number" min="1" max="9" step="1"></td>
+                          <td><input class="form-control" type="number" min="1" max="9" step="1"></td>
+                        </tr>
+                        <tr>
+                          <td><input class="form-control" type="number" min="1" max="9" step="1"></td>
+                          <td><input class="form-control" type="number" min="1" max="9" step="1"></td>
+                          <td><input class="form-control" type="number" min="1" max="9" step="1"></td>
+                          <td><input class="form-control bg-grey" type="number" min="1" max="9" step="1"></td>
+                          <td><input class="form-control bg-grey" type="number" min="1" max="9" step="1"></td>
+                          <td><input class="form-control bg-grey" type="number" min="1" max="9" step="1"></td>
+                          <td><input class="form-control" type="number" min="1" max="9" step="1"></td>
+                          <td><input class="form-control" type="number" min="1" max="9" step="1"></td>
+                          <td><input class="form-control" type="number" min="1" max="9" step="1"></td>
+                        </tr>
+                        <tr>
+                          <td><input class="form-control" type="number" min="1" max="9" step="1"></td>
+                          <td><input class="form-control" type="number" min="1" max="9" step="1"></td>
+                          <td><input class="form-control" type="number" min="1" max="9" step="1"></td>
+                          <td><input class="form-control bg-grey" type="number" min="1" max="9" step="1"></td>
+                          <td><input class="form-control bg-grey" type="number" min="1" max="9" step="1"></td>
+                          <td><input class="form-control bg-grey" type="number" min="1" max="9" step="1"></td>
+                          <td><input class="form-control" type="number" min="1" max="9" step="1"></td>
+                          <td><input class="form-control" type="number" min="1" max="9" step="1"></td>
+                          <td><input class="form-control" type="number" min="1" max="9" step="1"></td>
+                        </tr>
+                        <tr>
+                          <td><input class="form-control bg-grey" type="number" min="1" max="9" step="1"></td>
+                          <td><input class="form-control bg-grey" type="number" min="1" max="9" step="1"></td>
+                          <td><input class="form-control bg-grey" type="number" min="1" max="9" step="1"></td>
+                          <td><input class="form-control" type="number" min="1" max="9" step="1"></td>
+                          <td><input class="form-control" type="number" min="1" max="9" step="1"></td>
+                          <td><input class="form-control" type="number" min="1" max="9" step="1"></td>
+                          <td><input class="form-control bg-grey" type="number" min="1" max="9" step="1"></td>
+                          <td><input class="form-control bg-grey" type="number" min="1" max="9" step="1"></td>
+                          <td><input class="form-control bg-grey" type="number" min="1" max="9" step="1"></td>
+                        </tr>
+                        <tr>
+                          <td><input class="form-control bg-grey" type="number" min="1" max="9" step="1"></td>
+                          <td><input class="form-control bg-grey" type="number" min="1" max="9" step="1"></td>
+                          <td><input class="form-control bg-grey" type="number" min="1" max="9" step="1"></td>
+                          <td><input class="form-control" type="number" min="1" max="9" step="1"></td>
+                          <td><input class="form-control" type="number" min="1" max="9" step="1"></td>
+                          <td><input class="form-control" type="number" min="1" max="9" step="1"></td>
+                          <td><input class="form-control bg-grey" type="number" min="1" max="9" step="1"></td>
+                          <td><input class="form-control bg-grey" type="number" min="1" max="9" step="1"></td>
+                          <td><input class="form-control bg-grey" type="number" min="1" max="9" step="1"></td>
+                        </tr>
+                        <tr>
+                          <td><input class="form-control bg-grey" type="number" min="1" max="9" step="1"></td>
+                          <td><input class="form-control bg-grey" type="number" min="1" max="9" step="1"></td>
+                          <td><input class="form-control bg-grey" type="number" min="1" max="9" step="1"></td>
+                          <td><input class="form-control" type="number" min="1" max="9" step="1"></td>
+                          <td><input class="form-control" type="number" min="1" max="9" step="1"></td>
+                          <td><input class="form-control" type="number" min="1" max="9" step="1"></td>
+                          <td><input class="form-control bg-grey" type="number" min="1" max="9" step="1"></td>
+                          <td><input class="form-control bg-grey" type="number" min="1" max="9" step="1"></td>
+                          <td><input class="form-control bg-grey" type="number" min="1" max="9" step="1"></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="text-center">
+                    <button type="submit" class="btn btn-primary" id="btn-send-grid">
+                      <i class="fas fa-paper-plane"></i> Send grid!
+                    </button>
+                  </div>
+                </form>
+              </div>
+              <div class="tab-pane" id="input-type-pic" role="tabpanel">
+                <!--h5 class="card-title"><i class="fas fa-camera-retro"></i> Take a picture </h5-->
+                <p class="card-text">Select a picture of your grid</p>
+                <div class="btn-group btn-group-sm" role="group">
+                  <button class="btn btn-outline-dark btn-sm" id="btn-clear-solution">Clear</button>
+                </div>
+                <div class="input-group mb-3">
+                  <div class="custom-file">
+                    <!-- can use accept=".jpg,.png" to specify file extension -->
+                    <input type="file" class="custom-file-input" id="photofile" aria-describedby="inputGroupFileAddon04" accept="image/*"> 
+                    <label class="custom-file-label" for="inputGroupFile04" id="photolabel">Choose file</label>
+                  </div>
+                  <div class="input-group-append">
+                    <button class="btn btn-primary" type="button" id="photoupload"><i class="fas fa-upload"></i> Upload!</button>
+                  </div>
+                </div>
+                <div>
+                  <p><small><em>For best performance, use a clear picture where the grid borders are all visible</em></small></p>
+                </div>
+                <div id="photodiv" class="mx-auto"></div>
+              </div>
+            </div>  <!-- end of card-body -->
+          </div> <!-- end of card -->
+        </div>
+        <div class="col-lg-6">
+          <div class="card h-100">
+            <div class="card-header">
+              <h5 class="text-center">Grid Solution</h5><br>
+              <ul class="nav nav-tabs card-header-tabs" id="input-type" role="tablist">
+                <li class="nav-item"><p></p></li><li class="nav-item"><p></p></li>
+              </ul>
+            </div>
+          <div class="card-body">
+            <p class="card-text"> &nbsp; </p>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert" id="no-solution-msg">
+              <strong>No solution found!</strong> Please check that the input is valid.
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+             <div class="alert alert-danger alert-dismissible fade show" role="alert" id="grid-not-detected-msg">
+              <strong>Grid not found in picture!</strong> Please upload a better quality picture containing the full grid.
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <form id="solution-grid-form">
+              <div class="input-group input-group-sm mb-3 justify-content-center">
+                <div id="spinner" class="input-group-sm mb-3 justify-content-center spinner-border m-30 text-primary" role="status">
+                  <span class="sr-only">Loading...</span>
+                </div>
+
+                <table class="table-responsive-sm table-borderless" id="solution-grid">
+                  <tbody>
+                    <tr>
+                      <td><input class="form-control bg-grey" type="number" min="1" max="9" disabled></td>
+                      <td><input class="form-control bg-grey" type="number" min="1" max="9" disabled></td>
+                      <td><input class="form-control bg-grey" type="number" min="1" max="9" disabled></td>
+                      <td><input class="form-control bg-white" type="number" min="1" max="9" disabled></td>
+                      <td><input class="form-control bg-white" type="number" min="1" max="9" disabled></td>
+                      <td><input class="form-control bg-white" type="number" min="1" max="9" disabled></td>
+                      <td><input class="form-control bg-grey" type="number" min="1" max="9" disabled></td>
+                      <td><input class="form-control bg-grey" type="number" min="1" max="9" disabled></td>
+                      <td><input class="form-control bg-grey" type="number" min="1" max="9" disabled></td>
+                    </tr>
+                    <tr>
+                      <td><input class="form-control bg-grey" type="number" min="1" max="9" disabled></td>
+                      <td><input class="form-control bg-grey" type="number" min="1" max="9" disabled></td>
+                      <td><input class="form-control bg-grey" type="number" min="1" max="9" disabled></td>
+                      <td><input class="form-control bg-white" type="number" min="1" max="9" disabled></td>
+                      <td><input class="form-control bg-white" type="number" min="1" max="9" disabled></td>
+                      <td><input class="form-control bg-white" type="number" min="1" max="9" disabled></td>
+                      <td><input class="form-control bg-grey" type="number" min="1" max="9" disabled></td>
+                      <td><input class="form-control bg-grey" type="number" min="1" max="9" disabled></td>
+                      <td><input class="form-control bg-grey" type="number" min="1" max="9" disabled></td>
+                    </tr>
+                    <tr>
+                      <td><input class="form-control bg-grey" type="number" min="1" max="9" disabled></td>
+                      <td><input class="form-control bg-grey" type="number" min="1" max="9" disabled></td>
+                      <td><input class="form-control bg-grey" type="number" min="1" max="9" disabled></td>
+                      <td><input class="form-control bg-white" type="number" min="1" max="9" disabled></td>
+                      <td><input class="form-control bg-white" type="number" min="1" max="9" disabled></td>
+                      <td><input class="form-control bg-white" type="number" min="1" max="9" disabled></td>
+                      <td><input class="form-control bg-grey" type="number" min="1" max="9" disabled></td>
+                      <td><input class="form-control bg-grey" type="number" min="1" max="9" disabled></td>
+                      <td><input class="form-control bg-grey" type="number" min="1" max="9" disabled></td>
+                    </tr>
+                    <tr>
+                      <td><input class="form-control bg-white" type="number" min="1" max="9" disabled></td>
+                      <td><input class="form-control bg-white" type="number" min="1" max="9" disabled></td>
+                      <td><input class="form-control bg-white" type="number" min="1" max="9" disabled></td>
+                      <td><input class="form-control bg-grey" type="number" min="1" max="9" disabled></td>
+                      <td><input class="form-control bg-grey" type="number" min="1" max="9" disabled></td>
+                      <td><input class="form-control bg-grey" type="number" min="1" max="9" disabled></td>
+                      <td><input class="form-control bg-white" type="number" min="1" max="9" disabled></td>
+                      <td><input class="form-control bg-white" type="number" min="1" max="9" disabled></td>
+                      <td><input class="form-control bg-white" type="number" min="1" max="9" disabled></td>
+                    </tr>
+                    <tr>
+                      <td><input class="form-control bg-white" type="number" min="1" max="9" disabled></td>
+                      <td><input class="form-control bg-white" type="number" min="1" max="9" disabled></td>
+                      <td><input class="form-control bg-white" type="number" min="1" max="9" disabled></td>
+                      <td><input class="form-control bg-grey" type="number" min="1" max="9" disabled></td>
+                      <td><input class="form-control bg-grey" type="number" min="1" max="9" disabled></td>
+                      <td><input class="form-control bg-grey" type="number" min="1" max="9" disabled></td>
+                      <td><input class="form-control bg-white" type="number" min="1" max="9" disabled></td>
+                      <td><input class="form-control bg-white" type="number" min="1" max="9" disabled></td>
+                      <td><input class="form-control bg-white" type="number" min="1" max="9" disabled></td>
+                    </tr>
+                    <tr>
+                      <td><input class="form-control bg-white" type="number" min="1" max="9" disabled></td>
+                      <td><input class="form-control bg-white" type="number" min="1" max="9" disabled></td>
+                      <td><input class="form-control bg-white" type="number" min="1" max="9" disabled></td>
+                      <td><input class="form-control bg-grey" type="number" min="1" max="9" disabled></td>
+                      <td><input class="form-control bg-grey" type="number" min="1" max="9" disabled></td>
+                      <td><input class="form-control bg-grey" type="number" min="1" max="9" disabled></td>
+                      <td><input class="form-control bg-white" type="number" min="1" max="9" disabled></td>
+                      <td><input class="form-control bg-white" type="number" min="1" max="9" disabled></td>
+                      <td><input class="form-control bg-white" type="number" min="1" max="9" disabled></td>
+                    </tr>
+                    <tr>
+                      <td><input class="form-control bg-grey" type="number" min="1" max="9" disabled></td>
+                      <td><input class="form-control bg-grey" type="number" min="1" max="9" disabled></td>
+                      <td><input class="form-control bg-grey" type="number" min="1" max="9" disabled></td>
+                      <td><input class="form-control bg-white" type="number" min="1" max="9" disabled></td>
+                      <td><input class="form-control bg-white" type="number" min="1" max="9" disabled></td>
+                      <td><input class="form-control bg-white" type="number" min="1" max="9" disabled></td>
+                      <td><input class="form-control bg-grey" type="number" min="1" max="9" disabled></td>
+                      <td><input class="form-control bg-grey" type="number" min="1" max="9" disabled></td>
+                      <td><input class="form-control bg-grey" type="number" min="1" max="9" disabled></td>
+                    </tr>
+                    <tr>
+                      <td><input class="form-control bg-grey" type="number" min="1" max="9" disabled></td>
+                      <td><input class="form-control bg-grey" type="number" min="1" max="9" disabled></td>
+                      <td><input class="form-control bg-grey" type="number" min="1" max="9" disabled></td>
+                      <td><input class="form-control bg-white" type="number" min="1" max="9" disabled></td>
+                      <td><input class="form-control bg-white" type="number" min="1" max="9" disabled></td>
+                      <td><input class="form-control bg-white" type="number" min="1" max="9" disabled></td>
+                      <td><input class="form-control bg-grey" type="number" min="1" max="9" disabled></td>
+                      <td><input class="form-control bg-grey" type="number" min="1" max="9" disabled></td>
+                      <td><input class="form-control bg-grey" type="number" min="1" max="9" disabled></td>
+                    </tr>
+                    <tr>
+                      <td><input class="form-control bg-grey" type="number" min="1" max="9" disabled></td>
+                      <td><input class="form-control bg-grey" type="number" min="1" max="9" disabled></td>
+                      <td><input class="form-control bg-grey" type="number" min="1" max="9" disabled></td>
+                      <td><input class="form-control bg-white" type="number" min="1" max="9" disabled></td>
+                      <td><input class="form-control bg-white" type="number" min="1" max="9" disabled></td>
+                      <td><input class="form-control bg-white" type="number" min="1" max="9" disabled></td>
+                      <td><input class="form-control bg-grey" type="number" min="1" max="9" disabled></td>
+                      <td><input class="form-control bg-grey" type="number" min="1" max="9" disabled></td>
+                      <td><input class="form-control bg-grey" type="number" min="1" max="9" disabled></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </form>
+          </div>
+          <div class="row"> &nbsp; </div>
+        </div>
+      </div>
+    </div>
+    <br>
+    <br>
+  </div>
+
+    <!-- Site footer -->
+    <footer class="site-footer">        
+      <div class="container-sm">
+        <div class="row">
+          <div class="col-md-8 col-sm-6 col-xs-12">
+            <p class="copyright-text">&copy; 2020, <a href="https://www.paul-martins.com/" target="_blank">Paul Martins</a>
+            </p>
+          </div>
+          <div class="col-md-4 col-sm-6 col-xs-12">
+            <ul class="social-icons">
+              <li><a class="github" href="https://github.com/paulmartins" target="_blank"><i class="fa fa-github"></i></a></li>
+              <li><a class="twitter" href="https://twitter.com/Paul_Martins1" target="_blank"><i class="fa fa-twitter"></i></a></li>
+              <li><a class="linkedin" href="https://www.linkedin.com/in/paul-martins-ds/" target="_blank"><i class="fa fa-linkedin"></i></a></li>   
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.0.min.js"
+    integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ="
+    crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" 
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" 
+    crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" 
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" 
+    crossorigin="anonymous"></script>
+    <!-- Fontawsome -->
+    <script src="https://kit.fontawesome.com/6b09341d85.js" crossorigin="anonymous"></script>
+    <!-- Custom JS -->
+    <script src="main.bundle.js"></script>
+  </body>
+</html>

@@ -18,7 +18,14 @@ module.exports = {
         new webpack.HotModuleReplacementPlugin(),
         new MiniCssExtractPlugin({filename:'[name].bundle.css'}),
         new FaviconsWebpackPlugin('sudoku_icon.png'),
-        new Dotenv()
+        new Dotenv(),
+        new webpack.EnvironmentPlugin([
+            'cognito_region', 
+            'cognito_identityPoolId', 
+            'api_invokeUrl', 
+            'api_key', 
+            's3_pictureBucketName',
+            's3_pictureBucketFolder'])
     ],
     module: {
         rules: [

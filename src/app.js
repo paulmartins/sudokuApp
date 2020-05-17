@@ -170,6 +170,7 @@ function getSolution(grid_id) {
 }
 
 function fillSolutionGrid(data, input_grid) {
+  clearSolutionGrid();
 	var solution = data['Items'][0]["solution"]["S"];
 	var input_grid = JSON.parse(data['Items'][0]["input"]["S"]);
     console.log('Grid read from dynamo DB:', input_grid, solution);
@@ -240,9 +241,10 @@ function uploadPhoto() {
   		function(data, grid_id) {
   			console.log(data['key'].replace(/incoming\//,"").replace(/\.[^/.]+$/, ""));
   			alert("Successfully uploaded photo.");
+        clearSolutionGrid();
   			document.getElementById("photodiv").innerHTML = '<img style="width:256px;height:256px;" src="' + data.Location + '"/>';
   			document.getElementById("spinner").style.display = "block";
-			document.getElementById("solution-grid").style.display = "none";
+			  document.getElementById("solution-grid").style.display = "none";
   			getSolution(data['key'].replace(/incoming\//,"").replace(/\.[^/.]+$/, ""));
   		},
   		function(err) {
